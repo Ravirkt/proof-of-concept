@@ -1,4 +1,108 @@
-{% render 'partials/head.liquid', pageTitle: pageTitle %}
+{% render 'partials/head.liquid' %}
+<script src="scripts/script.js" defer></script>
+
+
+
+<div class="navbar-button-container">
+    <button class="navbar-button" type="button">navbar</button>
+</div>
+
+
+
+<header class="header-container">
+
+    {% render 'partials/back-button.liquid', href-text: "terug naar dashboard" %}
+
+    <h1 class="header-title">Gebruikers statistieken</h1>
+
+    <div class="buttons-container">
+        <button class="button-1 active">User data</button>
+        <button class="button-2">Course data</button>
+    </div>
+
+</header>
+
+
+<div class="chart-container">
+  <canvas class="chart" id="line-chart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+<script>
+
+    const lineChart = document.getElementById("line-chart");
+
+    new Chart(lineChart, {
+        type: "line",
+        data: {
+            labels: ["Apr 4", "Apr 9", "Apr 15", "Apr 21", "Apr 27", "May 3", "May 9", "May 15", "May 21", "May 27", "Jun 7", "Jun 12", "Jun 18", "Jun 24","Jun 30"],
+            datasets: [{
+                data: [ 21, 12, 7, 11, 13, 9, 17, 30, 46, 5, 23, 34, 6, 10, 13 ],
+                borderWidth: 0.5,
+            }]
+
+        },
+        options: {
+            scales: {
+                y: {
+                    display: true,
+                    grid: {
+                        display: true
+                    },
+                    border: {
+                        display: false
+                    },
+                    ticks: {
+                        display: false
+                    }
+                },
+                x: {
+                    display: true,
+                    grid: {
+                        display: false
+                    }
+                }
+            },
+
+            plugins: {
+                legend: {
+                    display: false  
+                },
+                title: {
+                    display: true,
+                    text: "Actieve gebruikers",
+                    align: "start",
+                    padding: {
+                        top: 40,
+                        right: 10,
+                        
+                        bottom: 5
+                    }
+                },
+                subtitle: {
+                display: true,
+                text: "Totale aantal actieve gebruikers van afgelopen 3 maanden",
+                align: "start",
+                padding: {
+                    left: 100
+
+                }
+            }
+            }
+            
+        }
+    })
+
+</script>
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,56 @@
+body {
+
+  /* Colors */
+  --primair: #483AE6;
+  --succes: #059669;
+  --destructief: #DC2626;
+  --achtergrond: #FCFBFE;
+  --font-headers-primary: #10014E;
+  --font-secundair: #868E96;
+
+
+  /* fonts */
+  @font-face {
+    font-family: "headers-primary";
+    src: url(../font/Rubik-VariableFont_wght/woff2);
+  }
+
+  @font-face {
+    font-family: "general";
+    src: url(../font/Figtree-VariableFont_wght/woff2);
+  }
+
+  --header-primary-font: "headers-primary", sans-serif;
+  --general-font: "general", sans-serif;
+
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: var(--header-primary-font);
+  color: var(--font-headers-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--header-primary-font);
+  color: var(--font-headers-primary);
+}
+
+.paragraph {
+  font-family: var(--general);
+  color: var(--font-secundair-color);
+}
+
+p {
+  font-family: var(--general);
+  color: var(--font-secundair-color);
+}

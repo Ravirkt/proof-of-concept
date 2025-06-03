@@ -12,19 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fdnd-task/proof-of-concept.git"
+    "url": "git+https://github.com/Ravirkt/proof-of-concept"
   },
   "keywords": [
     "node",
     "express",
     "ejs"
   ],
-  "author": "J.P. Sturkenboom <j.p.sturkenboom@hva.nl>",
+  "author": "R. Tjikhoeri <ravi.tjikhoeri@hva.nl>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fdnd-task/proof-of-concept/issues"
+    "url": "https://github.com/Ravirkt/proof-of-concept/issues"
   },
-  "homepage": "https://github.com/fdnd-task/proof-of-concept#readme",
+  "homepage": "https://github.com/Ravirkt/proof-of-concept",
   "dependencies": {
     "express": "^5.0.1",
     "liquidjs": "^10.21.0"

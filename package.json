@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/Ravirkt/proof-of-concept",
   "dependencies": {
+    "chart.js": "^4.4.9",
     "express": "^5.0.1",
     "liquidjs": "^10.21.0"
   }

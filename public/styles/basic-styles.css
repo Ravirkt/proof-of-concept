@@ -9,6 +9,7 @@ body {
   --font-secundair-disabled: #868E96;
   --color-muted: #71717a;
   --color-disabled: #F4F4F5;
+  --navbar-text-color: #3F3F46;
 
 
   /* fonts */
@@ -67,11 +68,14 @@ body {
 
 
 .paragraph {
-  font-family: var(--general);
+  font-family: var(--general-font);
   color: var(--font-secundair-color);
+  font-size: clamp(0.775rem, 2vw, 0.8rem); 
 }
 
 p {
-  font-family: var(--general);
+  font-family: var(--general-font);
   color: var(--font-secundair-color);
+  font-size: clamp(0.875rem, 2vw, 0.8rem); 
+
 }

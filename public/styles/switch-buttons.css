@@ -1,0 +1,29 @@
+.buttons-container {
+  background-color: var(--color-disabled);
+  width: fit-content;
+  padding: 0.3rem;
+  border-radius: 0.4rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.buttons-container input[type="radio"] {
+  display: none;
+}
+
+.buttons-container label.button {
+  padding: 0.5rem 3rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  background-color: var(--color-disabled);
+  color: var(--color-muted);
+  transition: ease-in-out 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons-container input[type="radio"]:checked + label.button {
+  background-color: white;
+  color: var(--color-black);
+}

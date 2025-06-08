@@ -1,0 +1,30 @@
+.card-button-text {
+  display: none;
+}
+
+.card-button {
+  height: 2rem;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.2rem;
+  gap: 0.4rem;
+  border: var(--border);
+  background-color: var(--card-button);
+  border-radius: 0.4rem;
+  text-decoration: none;
+  color: var(--color-black);
+  font-family: var(--general-font);
+  font-size: small;
+}
+
+@media (min-width: 450px) {
+  .card-button-text {
+    display: inline;
+  }
+
+  .card-button {
+    padding: 0.4rem;
+  }
+}

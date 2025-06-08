@@ -10,7 +10,11 @@ body {
   --color-muted: #71717a;
   --color-disabled: #F4F4F5;
   --navbar-text-color: #3F3F46;
+  --card-button: #E4E4E7;
+  --color-black: #09090B;
 
+
+  --padding-top: 2rem;
 
   /* fonts */
   @font-face {
@@ -25,6 +29,7 @@ body {
 
   --header-primary-font: "headers-primary", sans-serif;
   --general-font: "general", sans-serif;
+  --border: 0.5px solid var(--color-muted)
 
 }
 
@@ -79,3 +84,16 @@ p {
   font-size: clamp(0.875rem, 2vw, 0.8rem); 
 
 }
+
+.label {
+  font-family: var(--general-font);
+  font-size: clamp(0.700rem, 2vw, 1rem); 
+}
+
+
+
+
+
+
+
+

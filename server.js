@@ -26,16 +26,77 @@ app.set('views', './views')
 
 
 
-
+https://api.frd-delta.nl/klassen.json
 
 app.get('/', async function (request, response) {
+  
+  // voor ophalen klassen data
+    const apiResponseClasses = await fetch('https://api.frd-delta.nl/klassen.json');
+    const classDataJSON = await apiResponseClasses.json()
+
+  // voor ophalen card data
+    const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
+    const cardInfoDataJSON = await apiResponseCardInfo.json()
+
+  response.render('main.liquid', {classes: classDataJSON, statistics: cardInfoDataJSON,  });
+})
+
+app.get('/chartdata', async function (request, response) {
+  
+  // voor ophalen chart data
+    const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
+    const cardInfoDataJSON = await apiResponseCardInfo.json()
+
+    console.log(cardInfoDataJSON.actieveGebruikers[0].datum)
+    console.log(cardInfoDataJSON.actieveGebruikers[1].datum)
+    console.log(cardInfoDataJSON.actieveGebruikers[2].datum)
+    console.log(cardInfoDataJSON.actieveGebruikers[3].datum)
+    console.log(cardInfoDataJSON.actieveGebruikers[4].datum)
+    console.log(cardInfoDataJSON.actieveGebruikers[5].datum)
+    console.log(cardInfoDataJSON.actieveGebruikers[6].datum)
+    console.log(cardInfoDataJSON.actieveGebruikers[7].datum)
+    console.log(cardInfoDataJSON.actieveGebruikers[8].datum)
+    console.log(cardInfoDataJSON.actieveGebruikers.datum)
+
+    console.log(cardInfoDataJSON.actieveGebruikers[0].gebruikers)
+    console.log(cardInfoDataJSON.actieveGebruikers[1].gebruikers)
+    console.log(cardInfoDataJSON.actieveGebruikers[2].gebruikers)
+    console.log(cardInfoDataJSON.actieveGebruikers[3].gebruikers)
+    console.log(cardInfoDataJSON.actieveGebruikers[4].gebruikers)
+    console.log(cardInfoDataJSON.actieveGebruikers[5].gebruikers)
+    console.log(cardInfoDataJSON.actieveGebruikers[6].gebruikers)
+    console.log(cardInfoDataJSON.actieveGebruikers[7].gebruikers)
+    console.log(cardInfoDataJSON.actieveGebruikers[8].gebruikers)
 
 
-  response.render('main.liquid');
+
+    let userAmount = [cardInfoDataJSON.actieveGebruikers[0].gebruikers,cardInfoDataJSON.actieveGebruikers[1].gebruikers,cardInfoDataJSON.actieveGebruikers[2].gebruikers,cardInfoDataJSON.actieveGebruikers[3].gebruikers,cardInfoDataJSON.actieveGebruikers[4].gebruikers,cardInfoDataJSON.actieveGebruikers[5].gebruikers,cardInfoDataJSON.actieveGebruikers[6].gebruikers,cardInfoDataJSON.actieveGebruikers[7].gebruikers,cardInfoDataJSON.actieveGebruikers[8].gebruikers]
+
+    let chartDates = [cardInfoDataJSON.actieveGebruikers[0].datum, cardInfoDataJSON.actieveGebruikers[1].datum, cardInfoDataJSON.actieveGebruikers[2].datum, cardInfoDataJSON.actieveGebruikers[3].datum, cardInfoDataJSON.actieveGebruikers[4].datum, cardInfoDataJSON.actieveGebruikers[5].datum, cardInfoDataJSON.actieveGebruikers[6].datum, cardInfoDataJSON.actieveGebruikers[7].datum, cardInfoDataJSON.actieveGebruikers[8].datum ]
+
+    console.log(chartDates)
+    console.log(userAmount)
+
+response.json({ chartDates, userAmount });
 })
 
 
 
+
+
+
+
+
+
+
+
+
+app.get('/details/:id', async function (request, response) {
+
+ const test = "hallo test"
+
+  response.render('details.liquid', {details: test});
+});
 
 
 

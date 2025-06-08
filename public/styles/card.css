@@ -1,0 +1,32 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 17rem;
+    border: var(--border);
+    padding: 1rem;
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+
+
+}
+
+.card-title-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+
+    img {
+        margin-left: auto;
+    }
+}
+
+.card-count-license {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .card-amount-data {
+        font-size: x-large;
+    }
+}

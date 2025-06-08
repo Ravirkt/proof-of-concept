@@ -1,0 +1,60 @@
+.select-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.select-label {
+    font-family: var(--general-font);
+    font-size: small;
+    font-weight: 500;
+}
+
+.select-button {
+    height: 2rem;
+    width: 10rem;
+    border: var(--border);
+    font-family: var(--general-font);
+    border-radius: 0.3rem;
+    font-size: small;
+}
+
+/* zoekbalk */
+.search-bar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.search-bar-label {
+    font-family: var(--general-font);
+    font-size: small;
+    font-weight: 500;
+}
+
+.search-bar {
+    height: 2rem;
+    width: 12rem;
+    border: var(--border);
+    font-family: var(--general-font);
+    border-radius: 0.3rem;
+    font-size: small;
+    padding-left: 2rem;
+    background: url("/img/searchbar-icon.svg") no-repeat 0.5rem center;
+    background-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar:focus,
+.select-button:focus {
+  outline: none; 
+  border-color: var(--primair); 
+  background-color: var(--fonts-headers-primary); 
+}
+
+.search-bar::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}

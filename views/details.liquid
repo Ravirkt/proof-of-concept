@@ -1,2 +1,76 @@
-<p>d fjsnfmsfjsdfnksndfksd</p>
+{% render 'partials/head.liquid' %}
+<script src="scripts/script.js" defer></script>
+<script src="scripts/progress.js" defer></script>
+<script src="/scripts/script.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+
+
+    {% comment %} <main class="main-container"> {% endcomment %}
+
+        {% render 'partials/navbar.liquid' %}
+
+        <header class="header-container-details">
+            {% render 'partials/back-button.liquid', href-text: "Pagina terug" %}
+
+            <h2 class="header-title-details h3">
+                <span class="navigation-item">Dashboard</span> 
+                <img src="/img/arrow-right-dp.svg" width="20" height="20" alt="">
+                <span class="navigation-item">Dashboard</span> 
+                <img src="/img/arrow-right-dp.svg" width="20" height="20" alt="">
+                <span class="navigation-item">Klas Roze</span> 
+            </h2>
+        </header>
+
+        {% render 'partials/profile-card.liquid',
+        class-name: "apidata",
+        name: "apidata",
+        class-id: "idapi"
+         %}
+
+
+                {% render 'partials/select-button.liquid',
+                select-button-id: "sorteren",
+                select-button-label-text: "Sorteren",
+                select-button-name: "sorteren",
+                button-value-1: "Sorteren op:",
+                button-value-2: "alfabet"
+                hidden: "hidden"
+                %}
+
+
+          {% render 'partials/search-bar.liquid',
+            search-bar-id: "search-students",
+            search-bar-label-text: "Zoek studenten",
+            placeholder-text: "Zoek studenten"
+            hidden: "hidden"
+          %}
+
+        {% render 'partials/student-card.liquid',
+        student-name: "Gareth Bale"
+         %}
+
+                {% render 'partials/big-statistics-button.liquid',
+                class-name: "klas-roze"
+                 %}
+
+        {% render 'partials/education-course-card.liquid',
+        education-course-name: "Maatschappelijke zorg",
+        education-course-subtitle: "maatschappelijke zorg - Ipse de Brugge"
+         %}
+
+
+        {% render 'partials/edit-button.liquid',
+        button-text: "Bewerken"
+         %}
+
+        
+
+        
+
+
+
+    </main>
+</body>
+
+
 

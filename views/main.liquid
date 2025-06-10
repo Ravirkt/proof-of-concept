@@ -71,7 +71,8 @@
 
                 {% render 'partials/search-bar.liquid',
                 search-bar-id: "search-classes",
-                search-bar-label-text: "Zoek klassen"
+                search-bar-label-text: "Zoek klassen",
+                placeholder-text: "Zoek Klassen"
                 %}
             </form>
 
@@ -96,7 +97,7 @@
                     name: class.begeleider,
                     progress: class.voortgang,
                     go-to-class: class-details-link,
-                    progress-chart: percentage-append-class-name
+                    progress-chart: percentage-append-class-name,
                 %}
             {% endfor %}
         </section>

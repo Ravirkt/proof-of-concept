@@ -11,12 +11,18 @@
 }
 
 .select-button {
-    height: 2rem;
+    height: 2.5rem;
     width: 10rem;
     border: var(--border);
     font-family: var(--general-font);
     border-radius: 0.3rem;
     font-size: small;
+    background: url("/img/arrow-select-btn.svg") no-repeat right 0.5rem center;
+    background-size: 1rem;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    box-shadow: var(--shadow);
 }
 
 /* zoekbalk */
@@ -33,7 +39,7 @@
 }
 
 .search-bar {
-    height: 2rem;
+    height: 2.5rem;
     width: 12rem;
     border: var(--border);
     font-family: var(--general-font);
@@ -44,17 +50,25 @@
     background-size: 1rem;
     display: flex;
     align-items: center;
+    box-shadow: var(--shadow);
+
 }
 
 .search-bar:focus,
 .select-button:focus {
-  outline: none; 
-  border-color: var(--primair); 
-  background-color: var(--fonts-headers-primary); 
+    outline: none;
+    border-color: var(--primair);
+    background-color: var(--fonts-headers-primary);
 }
 
 .search-bar::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none;
-  display: none;
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+.select-button {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }

@@ -1,21 +1,12 @@
-
-
-
-
-
-
-
-
-
 <article class="class-card">
     <figure class="class-card-image-container">
-        <img src="/img/img-plc.svg" class="class-card-image">
+        <img src="/img/img-plc.svg" class="class-card-image" alt="profiel foto">
     </figure>
 
     <div class="class-card-text">
         <h4 class="class-name">{{ classname }}</h4>
         <p class="name">
-            <img src="/img/user.svg" width="20" height="20">
+            <img src="/img/user.svg" width="20" height="20" alt="">
             {{ name }}
         </p>
         <p hidden class="class-id">{{ class-id }}</p>
@@ -23,13 +14,12 @@
 
     <div class="loader-card-container">
         <p class="progress-percentage">{{ progress }}%</p>
-        <span class="loader"></span>
+        <canvas class="{{ progress-chart }}" width="32" height="32"></canvas>
     </div>
 
     <div class="card-button-container">
         {% render 'partials/card-button.liquid', href-to-details: go-to-class %}
     </div>
-
 </article>
 
 

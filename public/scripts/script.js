@@ -25,10 +25,19 @@ const lineChart = document.getElementById("line-chart");
 
         },
         options: {
+            animations: {
+      tension: {
+        duration: 5000,
+        easing: 'linear',
+        from: 1,
+        to: 0,
+        loop: true
+      }
+    },
             scales: {
                 y: {
                   min: 10,      
-                  max: 30,     
+                  max: 40,     
                   beginAtZero: true,
                     display: true,
                     grid: {
@@ -58,10 +67,8 @@ const lineChart = document.getElementById("line-chart");
                     text: "Actieve gebruikers",
                     align: "start",
                     padding: {
-                        top: 40,
-                        right: 10,
-                        
-                        bottom: 5
+                      bottom: 5,
+                      left:30
                     }
                 },
                 subtitle: {
@@ -69,7 +76,7 @@ const lineChart = document.getElementById("line-chart");
                 text: "Totale aantal actieve gebruikers van afgelopen 3 maanden",
                 align: "start",
                 padding: {
-                    left: 100
+                      left:30
 
                 }
             }

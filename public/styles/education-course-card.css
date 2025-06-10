@@ -1,0 +1,35 @@
+.education-course-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    border: var(--border);
+    width: fit-content;
+    padding: 1.5rem;
+    border-radius: 0.4rem;
+    background-color: var(--achtergrond);
+
+    .education-course-card-content-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .education-course-card-title {
+            font-family: var(--general-font);
+            font-weight: 550;
+            color: var(--color-black);
+            font-size: larger;
+        }
+
+        .education-course-card-subtitle {
+            font-family: var(--general-font);
+            font-weight: lighter;
+            font-size: clamp(0.700rem, 2vw, 1rem);
+        }
+    }
+
+    img {
+        margin-left: auto;
+        padding-left: 1.5rem;
+    }
+}

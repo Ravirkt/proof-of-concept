@@ -11,15 +11,16 @@
   padding: 0.2rem;
   gap: 0.4rem;
   border: var(--border);
-  background-color: var(--card-button);
+  background-color: transparent;
   border-radius: 0.4rem;
   text-decoration: none;
   color: var(--color-black);
   font-family: var(--general-font);
   font-size: small;
+  box-shadow: var(--shadow);
 }
 
-@media (min-width: 450px) {
+@media (min-width: 520px) {
   .card-button-text {
     display: inline;
   }

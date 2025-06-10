@@ -1,0 +1,16 @@
+.big-statistics-button {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    background-color: var(--primair);
+    font-family: var(--general-font);
+    color: var(--achtergrond);
+    align-items: center;
+    justify-content: center;
+    font-weight: lighter;
+    padding: 0.4rem;
+    border: none;
+    border-radius: 0.4rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}

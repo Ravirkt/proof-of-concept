@@ -1,0 +1,12 @@
+.student-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+
+    .student-name {
+        font-weight: 500;
+        color: var(--color-black);
+        font-family: var(--general-font);
+    }
+}

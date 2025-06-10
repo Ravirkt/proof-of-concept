@@ -1,0 +1,14 @@
+.edit-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    background-color: var(--achtergrond);
+    border-radius: 0.4rem;
+    border: var(--border);
+    padding: 0.5rem;
+    font-family: var(--general-font);
+    font-size: small;
+    box-shadow: var(--shadow);
+}

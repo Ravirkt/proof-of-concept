@@ -1,123 +1,106 @@
 {% render 'partials/head.liquid' %}
 <script src="scripts/script.js" defer></script>
-
-
-
-
-<main class="main-container">
-
-{% render 'partials/navbar.liquid' %}
-
-
-<header class="header-container">
-    {% render 'partials/back-button.liquid', href-text: "terug naar dashboard" %}
-
-    <h1 class="header-title">Gebruikers statistieken</h1>
-
-    {% render 'partials/switch-buttons.liquid',
-    input-id-1: "user data",
-    input-id-2: "course data",
-    label-text-1: "User data",
-    label-text-2: "Course data",
-    label-name: "switch-buttons-1"
-    %}
-</header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="chart-container">
-  <canvas class="chart" id="line-chart"></canvas>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="scripts/progress.js" defer></script>
 <script src="/scripts/script.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+
+
+    <main class="main-container">
+
+        {% render 'partials/navbar.liquid' %}
+
+        <header class="header-container">
+            {% render 'partials/back-button.liquid', href-text: "terug naar dashboard" %}
+
+            <h2 class="header-title h1">Gebruikers statistieken</h2>
+
+            {% render 'partials/switch-buttons.liquid',
+            input-id-1: "user-data",
+            input-id-2: "course-data",
+            label-text-1: "User data",
+            label-text-2: "Course data",
+            label-name: "switch-buttons-1"
+            %}
+        </header>
+
+
+        <div class="chart-main-container">
+            <div class="chart-container">
+                <canvas class="chart" id="line-chart" height="100"></canvas>
+            </div>
+        </div>
+
+        <section class="card-parent-container">
+            <h2 hidden>Statistieken</h2>
+            {% if statistics %}
+                {% assign total-users = statistics.totaalGebruikers | append: "/" | append: statistics.maxLicentie %}
+                {% assign now-online = "🟢 " | append: statistics.nuOnline %}
+
+                {% render 'partials/card.liquid',
+                card-title: "Totale gebruikers",
+                count-data: total-users,
+                card-subtext: "Licentie",
+                %}
+
+                {% render 'partials/card.liquid',
+                card-title: "Nu online",
+                count-data: now-online,
+                card-subtext: "Gebruikers online op dit moment"
+                %}
+
+                {% render 'partials/card.liquid',
+                card-title: "Gemiddelde sessie",
+                count-data: statistics.gemiddeldeSessieMinuten
+                card-subtext: "minuten"
+                %}
+            {% endif %}
+        </section>
 
 
 
-<section class="card-parent-container">
-    {% if statistics %}
-    {% assign total-users = statistics.totaalGebruikers | append: "/" | append: statistics.maxLicentie %}
-    {% assign now-online = "🟢 " | append: statistics.nuOnline %}
+        <section class="main-form-parent-container">
+            <h4 hidden>filters</h4>
+            <form class="filter-form-container">
+                {% render 'partials/select-button.liquid',
+                select-button-id: "leerjaar",
+                select-button-label-text: "Leerjaar",
+                select-button-name: "leerjaar",
+                button-value-1: "Schooljaar",
+                button-value-2: "Jaar 1"
+                %}
 
-    {% render 'partials/card.liquid',
-    card-title: "Totale gebruikers",
-    count-data: total-users,
-    card-subtext: "Licentie",
-    %}
+                {% render 'partials/search-bar.liquid',
+                search-bar-id: "search-classes",
+                search-bar-label-text: "Zoek klassen"
+                %}
+            </form>
 
-    {% render 'partials/card.liquid',
-    card-title: "Nu online",
-    count-data: now-online,
-    card-subtext: "Gebruikers online op dit moment"
-    %}
+            <div class="switch-buttons-container-2">
+                {% render 'partials/switch-buttons.liquid',
+                input-id-1: "klassen",
+                input-id-2: "studenten",
+                label-text-1: "Klassen",
+                label-text-2: "Studenten",
+                label-name: "switch-buttons-2"
+                %}
+            </div>
+        </section>
 
-    {% render 'partials/card.liquid',
-    card-title: "Gemiddelde sessie",
-    count-data: statistics.gemiddeldeSessieMinuten
-    card-subtext: "minuten"
-    %}
-    {% endif %}
-
-</section>
-
-
-
-
-<form class="filter-form-container">
-    {% render 'partials/select-button.liquid',
-    select-button-id: "leerjaar",
-    select-button-label-text: "Leerjaar",
-    select-button-name: "leerjaar",
-    button-value-1: "Schooljaar",
-    button-value-2: "Jaar 1"
-    %}
-
-    {% render 'partials/search-bar.liquid',
-    search-bar-id: "search-classes",
-    search-bar-label-text: "Zoek klassen"
-    %}
-</form>
-
-<div class="switch-buttons-container-2">
-    {% render 'partials/switch-buttons.liquid',
-    input-id-1: "klassen",
-    input-id-2: "studenten",
-    label-text-1: "Klassen",
-    label-text-2: "Studenten",
-    label-name: "switch-buttons-2"
-    %}
-</div>
-
-
-
-<section class="cards-parent-container">
-{% for class in classes %}
-{% assign class-details-link = "/details/" | append: class.id %}
-{% render 'partials/class-card.liquid',
-    classname: class.naam,
-    name: class.begeleider,
-    progress: class.voortgang,
-    go-to-class: class-details-link
- %}
-{% endfor %}
-</section>
-
-
-
-
-</main>
-
+        <section class="cards-parent-container">
+            <h4 hidden>Statistieken</h4>
+            {% for class in classes %}
+                {% assign class-details-link = "/details/" | append: class.id %}
+                {% assign percentage-append-class-name = "progress-chart-" | append: class.naam | replace: ' ', '' %}
+                {% render 'partials/class-card.liquid',
+                    classname: class.naam,
+                    name: class.begeleider,
+                    progress: class.voortgang,
+                    go-to-class: class-details-link,
+                    progress-chart: percentage-append-class-name
+                %}
+            {% endfor %}
+        </section>
+    </main>
 </body>
 
 

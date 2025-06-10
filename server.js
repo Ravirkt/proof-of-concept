@@ -9,7 +9,7 @@ import { Liquid } from 'liquidjs';
 const app = express()
 
 // Maak werken met data uit formulieren iets prettiger
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 // Gebruik de map 'public' voor statische bestanden (resources zoals CSS, JavaScript, afbeeldingen en fonts)
 // Bestanden in deze map kunnen dus door de browser gebruikt worden
@@ -25,61 +25,83 @@ app.set('views', './views')
 
 
 
-
-https://api.frd-delta.nl/klassen.json
+// https://api.frd-delta.nl/klassen.json
 
 app.get('/', async function (request, response) {
-  
+
   // voor ophalen klassen data
-    const apiResponseClasses = await fetch('https://api.frd-delta.nl/klassen.json');
-    const classDataJSON = await apiResponseClasses.json()
+  const apiResponseClasses = await fetch('https://api.frd-delta.nl/klassen.json');
+  const classDataJSON = await apiResponseClasses.json()
 
   // voor ophalen card data
-    const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
-    const cardInfoDataJSON = await apiResponseCardInfo.json()
+  const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
+  const cardInfoDataJSON = await apiResponseCardInfo.json()
 
-  response.render('main.liquid', {classes: classDataJSON, statistics: cardInfoDataJSON,  });
+  response.render('main.liquid', { classes: classDataJSON, statistics: cardInfoDataJSON, });
 })
 
 app.get('/chartdata', async function (request, response) {
-  
+
   // voor ophalen chart data
-    const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
-    const cardInfoDataJSON = await apiResponseCardInfo.json()
+  const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
+  const cardInfoDataJSON = await apiResponseCardInfo.json()
 
-    console.log(cardInfoDataJSON.actieveGebruikers[0].datum)
-    console.log(cardInfoDataJSON.actieveGebruikers[1].datum)
-    console.log(cardInfoDataJSON.actieveGebruikers[2].datum)
-    console.log(cardInfoDataJSON.actieveGebruikers[3].datum)
-    console.log(cardInfoDataJSON.actieveGebruikers[4].datum)
-    console.log(cardInfoDataJSON.actieveGebruikers[5].datum)
-    console.log(cardInfoDataJSON.actieveGebruikers[6].datum)
-    console.log(cardInfoDataJSON.actieveGebruikers[7].datum)
-    console.log(cardInfoDataJSON.actieveGebruikers[8].datum)
-    console.log(cardInfoDataJSON.actieveGebruikers.datum)
+  console.log(cardInfoDataJSON.actieveGebruikers[0].datum)
+  console.log(cardInfoDataJSON.actieveGebruikers[1].datum)
+  console.log(cardInfoDataJSON.actieveGebruikers[2].datum)
+  console.log(cardInfoDataJSON.actieveGebruikers[3].datum)
+  console.log(cardInfoDataJSON.actieveGebruikers[4].datum)
+  console.log(cardInfoDataJSON.actieveGebruikers[5].datum)
+  console.log(cardInfoDataJSON.actieveGebruikers[6].datum)
+  console.log(cardInfoDataJSON.actieveGebruikers[7].datum)
+  console.log(cardInfoDataJSON.actieveGebruikers[8].datum)
+  console.log(cardInfoDataJSON.actieveGebruikers.datum)
 
-    console.log(cardInfoDataJSON.actieveGebruikers[0].gebruikers)
-    console.log(cardInfoDataJSON.actieveGebruikers[1].gebruikers)
-    console.log(cardInfoDataJSON.actieveGebruikers[2].gebruikers)
-    console.log(cardInfoDataJSON.actieveGebruikers[3].gebruikers)
-    console.log(cardInfoDataJSON.actieveGebruikers[4].gebruikers)
-    console.log(cardInfoDataJSON.actieveGebruikers[5].gebruikers)
-    console.log(cardInfoDataJSON.actieveGebruikers[6].gebruikers)
-    console.log(cardInfoDataJSON.actieveGebruikers[7].gebruikers)
-    console.log(cardInfoDataJSON.actieveGebruikers[8].gebruikers)
+  console.log(cardInfoDataJSON.actieveGebruikers[0].gebruikers)
+  console.log(cardInfoDataJSON.actieveGebruikers[1].gebruikers)
+  console.log(cardInfoDataJSON.actieveGebruikers[2].gebruikers)
+  console.log(cardInfoDataJSON.actieveGebruikers[3].gebruikers)
+  console.log(cardInfoDataJSON.actieveGebruikers[4].gebruikers)
+  console.log(cardInfoDataJSON.actieveGebruikers[5].gebruikers)
+  console.log(cardInfoDataJSON.actieveGebruikers[6].gebruikers)
+  console.log(cardInfoDataJSON.actieveGebruikers[7].gebruikers)
+  console.log(cardInfoDataJSON.actieveGebruikers[8].gebruikers)
 
 
+  let userAmount = [cardInfoDataJSON.actieveGebruikers[0].gebruikers, cardInfoDataJSON.actieveGebruikers[1].gebruikers, cardInfoDataJSON.actieveGebruikers[2].gebruikers, cardInfoDataJSON.actieveGebruikers[3].gebruikers, cardInfoDataJSON.actieveGebruikers[4].gebruikers, cardInfoDataJSON.actieveGebruikers[5].gebruikers, cardInfoDataJSON.actieveGebruikers[6].gebruikers, cardInfoDataJSON.actieveGebruikers[7].gebruikers, cardInfoDataJSON.actieveGebruikers[8].gebruikers]
 
-    let userAmount = [cardInfoDataJSON.actieveGebruikers[0].gebruikers,cardInfoDataJSON.actieveGebruikers[1].gebruikers,cardInfoDataJSON.actieveGebruikers[2].gebruikers,cardInfoDataJSON.actieveGebruikers[3].gebruikers,cardInfoDataJSON.actieveGebruikers[4].gebruikers,cardInfoDataJSON.actieveGebruikers[5].gebruikers,cardInfoDataJSON.actieveGebruikers[6].gebruikers,cardInfoDataJSON.actieveGebruikers[7].gebruikers,cardInfoDataJSON.actieveGebruikers[8].gebruikers]
+  let chartDates = [cardInfoDataJSON.actieveGebruikers[0].datum, cardInfoDataJSON.actieveGebruikers[1].datum, cardInfoDataJSON.actieveGebruikers[2].datum, cardInfoDataJSON.actieveGebruikers[3].datum, cardInfoDataJSON.actieveGebruikers[4].datum, cardInfoDataJSON.actieveGebruikers[5].datum, cardInfoDataJSON.actieveGebruikers[6].datum, cardInfoDataJSON.actieveGebruikers[7].datum, cardInfoDataJSON.actieveGebruikers[8].datum]
 
-    let chartDates = [cardInfoDataJSON.actieveGebruikers[0].datum, cardInfoDataJSON.actieveGebruikers[1].datum, cardInfoDataJSON.actieveGebruikers[2].datum, cardInfoDataJSON.actieveGebruikers[3].datum, cardInfoDataJSON.actieveGebruikers[4].datum, cardInfoDataJSON.actieveGebruikers[5].datum, cardInfoDataJSON.actieveGebruikers[6].datum, cardInfoDataJSON.actieveGebruikers[7].datum, cardInfoDataJSON.actieveGebruikers[8].datum ]
+  console.log(chartDates)
+  console.log(userAmount)
 
-    console.log(chartDates)
-    console.log(userAmount)
-
-response.json({ chartDates, userAmount });
+  response.json({ chartDates, userAmount });
 })
 
+
+app.get('/progressdata', async function (request, response) {
+
+  try {
+    // voor ophalen percentage data van de klassen
+    const apiResponseprogressData = await fetch('https://api.frd-delta.nl/klassen.json');
+    const progressDataJSON = await apiResponseprogressData.json()
+    console.log(progressDataJSON);
+
+    const progressPink = progressDataJSON[0].voortgang
+    const progressPurple = progressDataJSON[1].voortgang
+    const progressBlue = progressDataJSON[2].voortgang
+    const progressYellow = progressDataJSON[3].voortgang
+
+    console.log(progressDataJSON[0]);
+
+    console.log(progressPink, progressPurple, progressBlue, progressYellow)
+
+    response.json({ progressPink, progressPurple, progressBlue, progressYellow });
+  }
+  catch {
+    console.error("niet goed bro")
+  }
+})
 
 
 
@@ -93,9 +115,9 @@ response.json({ chartDates, userAmount });
 
 app.get('/details/:id', async function (request, response) {
 
- const test = "hallo test"
+  const test = "hallo test"
 
-  response.render('details.liquid', {details: test});
+  response.render('details.liquid', { details: test });
 });
 
 

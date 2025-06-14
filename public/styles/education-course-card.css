@@ -18,13 +18,13 @@
             font-family: var(--general-font);
             font-weight: 550;
             color: var(--color-black);
-            font-size: larger;
+            font-size: clamp(1rem, 2vw, 1.3rem);
         }
 
         .education-course-card-subtitle {
             font-family: var(--general-font);
             font-weight: lighter;
-            font-size: clamp(0.700rem, 2vw, 1rem);
+            font-size: clamp(0.650rem, 2vw, 1rem);
         }
     }
 

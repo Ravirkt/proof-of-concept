@@ -23,6 +23,7 @@
     align-items: center;
     padding-left: 1rem;
     box-shadow: var(--shadow);
+    cursor: pointer;
 }
 
 /* zoekbalk */
@@ -40,7 +41,7 @@
 
 .search-bar {
     height: 2.5rem;
-    width: 12rem;
+    width: 10rem;
     border: var(--border);
     font-family: var(--general-font);
     border-radius: 0.3rem;
@@ -71,4 +72,9 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+}
+
+.select-button:hover,
+.search-bar:hover {
+    border-color: var(--primair);
 }

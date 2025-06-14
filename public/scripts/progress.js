@@ -7,6 +7,17 @@ fetch('/progressdata')
         // class pink
         const progressChartPink = document.querySelectorAll(".progress-chart-KlasRoze");
 
+        // let color;
+
+        // if(progressBlue >= 0 && progressBlue <= 54) {
+        //     color = "red";
+
+        // } else if (progressBlue >= 55 && progressBlue <= 65) {
+        //     color = "orange";
+        // } else if (progressBlue >= 65 && progressBlue <= 100) {
+        //     color = "green";
+        // }
+
         new Chart(progressChartPink, {
             type: "doughnut",
             data: {

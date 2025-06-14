@@ -9,6 +9,46 @@
     border: var(--border);
     padding: 0.5rem;
     font-family: var(--general-font);
-    font-size: small;
+    font-size: 100;
     box-shadow: var(--shadow);
+    cursor: pointer;
+    height: fit-content;
+}
+
+.edit-button svg {
+    transition: transform 0.4s ease-in-out;
+}
+
+.edit-button:hover svg {
+    transform: rotate(360deg);
+    color: #000000;
+}
+
+.svg-item {
+    & .long {
+        fill: #000000;
+    }
+
+    & .top {
+        fill: #000000;
+    }
+
+    & .bottom {
+        fill: #000000;
+
+    }
+}
+
+.edit-button:hover svg {
+    .long {
+        fill: #cf950d;
+    }
+
+    & .top {
+        fill: #cf2a27;
+    }
+
+    & .bottom {
+        fill: #6e6565;
+    }
 }

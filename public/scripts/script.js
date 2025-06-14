@@ -1,32 +1,28 @@
-
 fetch('/chartdata')
   .then(res => res.json())
   .then(data => {
-    const { chartDates, userAmount } = data; 
-
-    console.log(chartDates);    
-    console.log(userAmount);  
+    const { activeUsers, date } = data; 
+// een table met alle data erin als fallback
+    console.log(activeUsers);    
+    console.log(date);  
 
 const lineChart = document.getElementById("line-chart");
 
     new Chart(lineChart, {
         type: "line",
         data: {
-            labels: chartDates,
+            labels: date,
             datasets: [{
-                data: userAmount,
+                data: activeUsers,
                 borderWidth: 2,
                 tension: 0.6,
                 pointRadius: 0,
                 borderColor: '#2A9D90'
             }],
-      
-            
-
         },
         options: {
             animations: {
-      tension: {
+        tension: {
         duration: 5000,
         easing: 'linear',
         from: 1,

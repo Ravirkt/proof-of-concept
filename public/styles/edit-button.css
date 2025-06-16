@@ -13,6 +13,10 @@
     box-shadow: var(--shadow);
     cursor: pointer;
     height: fit-content;
+    
+    &:hover {
+        border-color: var(--primair);
+    }
 }
 
 .edit-button svg {

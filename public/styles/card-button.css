@@ -18,6 +18,10 @@
   font-family: var(--general-font);
   font-size: small;
   box-shadow: var(--shadow);
+
+  &:hover {
+        border-color: var(--primair);
+    }
 }
 
 @media (min-width: 520px) {

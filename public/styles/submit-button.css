@@ -1,0 +1,15 @@
+.submit-button-form {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem;
+    border: var(--border);
+    background-color: var(--achtergrond);
+    box-shadow: var(--shadow);
+    border-radius: 0.4rem;
+    cursor: pointer;
+
+    &:hover {
+        border-color: var(--primair);
+    }
+
+}

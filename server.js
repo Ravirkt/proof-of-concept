@@ -1,86 +1,62 @@
-// Importeer het npm package Express (uit de door npm aangemaakte node_modules map)
-// Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
 import express from 'express'
 
-// Importeer de Liquid package (ook als dependency via npm geïnstalleerd)
-import { Liquid } from 'liquidjs';
+import { filters, Liquid } from 'liquidjs';
 
-// Maak een nieuwe Express applicatie aan, waarin we de server configureren
 const app = express()
 
-// Maak werken met data uit formulieren iets prettiger
 app.use(express.urlencoded({ extended: true }))
 
-// Gebruik de map 'public' voor statische bestanden (resources zoals CSS, JavaScript, afbeeldingen en fonts)
-// Bestanden in deze map kunnen dus door de browser gebruikt worden
+
 app.use(express.static('public'))
 
-// Stel Liquid in als 'view engine'
 const engine = new Liquid()
 app.engine('liquid', engine.express())
 
-// Stel de map met Liquid templates in
-// Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
+
 app.set('views', './views')
 
-
-
+// https://run.mocky.io/v3/5d73cf61-863b-44a9-94f3-029e2f5fe3e1
 // https://api.frd-delta.nl/klassen.json
 
 app.get('/', async function (request, response) {
+  try {
+    // voor ophalen klassen data
+    const apiResponseClasses = await fetch('https://api.frd-delta.nl/klassen.json');
+    const classDataJSON = await apiResponseClasses.json()
 
-  // voor ophalen klassen data
-  const apiResponseClasses = await fetch('https://api.frd-delta.nl/klassen.json');
-  const classDataJSON = await apiResponseClasses.json()
+    // voor ophalen card data
+    const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
+    const cardInfoDataJSON = await apiResponseCardInfo.json()
 
-  // voor ophalen card data
-  const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
-  const cardInfoDataJSON = await apiResponseCardInfo.json()
+    console.log(classDataJSON)
 
-  response.render('main.liquid', { classes: classDataJSON, statistics: cardInfoDataJSON, });
+    response.render('main.liquid', { classes: classDataJSON, statistics: cardInfoDataJSON, });
+
+  } catch {
+    console.error("Het gaat niet goed")
+  }
 })
 
 app.get('/chartdata', async function (request, response) {
+  try {
+    // voor ophalen chart data
+    const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
+    const cardInfoDataJSON = await apiResponseCardInfo.json()
 
-  // voor ophalen chart data
-  const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
-  const cardInfoDataJSON = await apiResponseCardInfo.json()
+    const date = cardInfoDataJSON.actieveGebruikers.map(dbDate => dbDate.datum);
+    console.log(date)
 
-  console.log(cardInfoDataJSON.actieveGebruikers[0].datum)
-  console.log(cardInfoDataJSON.actieveGebruikers[1].datum)
-  console.log(cardInfoDataJSON.actieveGebruikers[2].datum)
-  console.log(cardInfoDataJSON.actieveGebruikers[3].datum)
-  console.log(cardInfoDataJSON.actieveGebruikers[4].datum)
-  console.log(cardInfoDataJSON.actieveGebruikers[5].datum)
-  console.log(cardInfoDataJSON.actieveGebruikers[6].datum)
-  console.log(cardInfoDataJSON.actieveGebruikers[7].datum)
-  console.log(cardInfoDataJSON.actieveGebruikers[8].datum)
-  console.log(cardInfoDataJSON.actieveGebruikers.datum)
+    const activeUsers = cardInfoDataJSON.actieveGebruikers.map(dbUsers => dbUsers.gebruikers);
+    console.log(activeUsers)
 
-  console.log(cardInfoDataJSON.actieveGebruikers[0].gebruikers)
-  console.log(cardInfoDataJSON.actieveGebruikers[1].gebruikers)
-  console.log(cardInfoDataJSON.actieveGebruikers[2].gebruikers)
-  console.log(cardInfoDataJSON.actieveGebruikers[3].gebruikers)
-  console.log(cardInfoDataJSON.actieveGebruikers[4].gebruikers)
-  console.log(cardInfoDataJSON.actieveGebruikers[5].gebruikers)
-  console.log(cardInfoDataJSON.actieveGebruikers[6].gebruikers)
-  console.log(cardInfoDataJSON.actieveGebruikers[7].gebruikers)
-  console.log(cardInfoDataJSON.actieveGebruikers[8].gebruikers)
+    response.json({ date, activeUsers });
 
-
-  let userAmount = [cardInfoDataJSON.actieveGebruikers[0].gebruikers, cardInfoDataJSON.actieveGebruikers[1].gebruikers, cardInfoDataJSON.actieveGebruikers[2].gebruikers, cardInfoDataJSON.actieveGebruikers[3].gebruikers, cardInfoDataJSON.actieveGebruikers[4].gebruikers, cardInfoDataJSON.actieveGebruikers[5].gebruikers, cardInfoDataJSON.actieveGebruikers[6].gebruikers, cardInfoDataJSON.actieveGebruikers[7].gebruikers, cardInfoDataJSON.actieveGebruikers[8].gebruikers]
-
-  let chartDates = [cardInfoDataJSON.actieveGebruikers[0].datum, cardInfoDataJSON.actieveGebruikers[1].datum, cardInfoDataJSON.actieveGebruikers[2].datum, cardInfoDataJSON.actieveGebruikers[3].datum, cardInfoDataJSON.actieveGebruikers[4].datum, cardInfoDataJSON.actieveGebruikers[5].datum, cardInfoDataJSON.actieveGebruikers[6].datum, cardInfoDataJSON.actieveGebruikers[7].datum, cardInfoDataJSON.actieveGebruikers[8].datum]
-
-  console.log(chartDates)
-  console.log(userAmount)
-
-  response.json({ chartDates, userAmount });
+  } catch {
+    console.error("Het gaat niet goed")
+  }
 })
 
-
 app.get('/progressdata', async function (request, response) {
-
   try {
     // voor ophalen percentage data van de klassen
     const apiResponseprogressData = await fetch('https://api.frd-delta.nl/klassen.json');
@@ -92,37 +68,83 @@ app.get('/progressdata', async function (request, response) {
     const progressBlue = progressDataJSON[2].voortgang
     const progressYellow = progressDataJSON[3].voortgang
 
-    console.log(progressDataJSON[0]);
-
-    console.log(progressPink, progressPurple, progressBlue, progressYellow)
-
     response.json({ progressPink, progressPurple, progressBlue, progressYellow });
   }
   catch {
-    console.error("niet goed bro")
+    console.error("Het gaat niet goed")
   }
 })
 
-
-
-
-
-
-
-
-
-
+// https://api.frd-delta.nl/klassen/klas-blauw.json
 
 app.get('/details/:id', async function (request, response) {
 
-  const test = "hallo test"
+  const { sorteren, searchStudents } = request.query;
+  console.log(sorteren, searchStudents)
 
-  response.render('details.liquid', { details: test });
+  try {
+    const apiResponseClassData = await fetch('https://api.frd-delta.nl/klassen/' + request.params.id + '.json');
+    const classDataJSON = await apiResponseClassData.json()
+
+    if (sorteren === "a-z") {
+      classDataJSON.studenten.sort()
+    } if (sorteren === "z-a") {
+      classDataJSON.studenten.sort().reverse();
+    } else {
+      classDataJSON.studenten
+    }
+
+    const filteredStudents = classDataJSON.studenten.filter(student =>
+      student.toLowerCase().includes(searchStudents)
+    );
+
+    console.log(filteredStudents)
+
+    response.render('details.liquid', { classInformation: classDataJSON, students: classDataJSON.studenten, search: filteredStudents });
+
+  } catch {
+    console.error("Het gaat niet goed")
+  }
 });
 
+// post
+app.post('/opleidingen', async function (request, response) {
 
+  const { opleiding } = request.body;
+  console.log(request.body)
 
+  const apiResponse = await fetch('https://684f1804f0c9c9848d2a1123.mockapi.io/api/klassen/opleiding', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      opleiding: opleiding,
+    })
+  });
 
+  console.log(apiResponse)
+
+  response.redirect(303, '/opleidingen' + '?success=true');
+});
+
+app.get('/opleidingen', async function (request, response) {
+  try {
+    const success = request.query.success === 'true';
+    console.log(success);
+
+    const apiResponseCourses = await fetch('https://684f1804f0c9c9848d2a1123.mockapi.io/api/klassen/opleiding');
+    const coursesDataJSON = await apiResponseCourses.json()
+
+    const courses = coursesDataJSON.map(dbCourse => dbCourse.opleiding);
+    console.log(courses)
+
+    response.render('opleidingen.liquid', { courses, success });
+  }
+  catch {
+    console.error("Het gaat niet goed")
+  }
+})
 
 
 

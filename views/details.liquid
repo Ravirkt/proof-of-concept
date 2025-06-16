@@ -2,74 +2,165 @@
 <script src="scripts/script.js" defer></script>
 <script src="scripts/progress.js" defer></script>
 <script src="/scripts/script.js" defer></script>
+<script src="/scripts/filter.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
-
-    {% comment %} <main class="main-container"> {% endcomment %}
+{% comment %} de filter functie van van users maet sort() of filter() {% endcomment %}
+    <main class="detail-container">
 
         {% render 'partials/navbar.liquid' %}
+
 
         <header class="header-container-details">
             {% render 'partials/back-button.liquid', href-text: "Pagina terug" %}
 
+    {% if classInformation %}
             <h2 class="header-title-details h3">
                 <span class="navigation-item">Dashboard</span> 
                 <img src="/img/arrow-right-dp.svg" width="20" height="20" alt="">
                 <span class="navigation-item">Dashboard</span> 
                 <img src="/img/arrow-right-dp.svg" width="20" height="20" alt="">
-                <span class="navigation-item">Klas Roze</span> 
+                <span class="navigation-item">{{ classInformation.naam }}</span> 
             </h2>
         </header>
 
-        {% render 'partials/profile-card.liquid',
-        class-name: "apidata",
-        name: "apidata",
-        class-id: "idapi"
-         %}
+     <div class="detail-column">
+        <section class="profile-card-container-details">
+            <h4 hidden>profile</h4>
+
+            <div class="profile-card-child-container-details">
+                {% render 'partials/profile-card.liquid',
+                    class-name: classInformation.naam,
+                    name: classInformation.begeleider,
+                    class-id: classInformation.id
+                %}
+
+                {% render 'partials/edit-button.liquid',
+                    button-text: "Bewerken"
+                %}
+            </div>
+
+            {% render 'partials/big-statistics-button.liquid',
+                class-name: classInformation.naam 
+            %} 
+        </section>
+
+        <section class="class-courses-container-details">
+            <h5 class="class-course-title-details">Opleiding(en)</h5>
 
 
-                {% render 'partials/select-button.liquid',
+            <article class="education-course-card-container">
+                {% assign course-subtitle = classInformation.opleiding | append: "- Ipse de Brugge" %}
+                {% render 'partials/education-course-card.liquid',
+                    education-course-name: classInformation.opleiding,
+                    education-course-subtitle: course-subtitle
+                %}
+            </article>
+        </section>
+    </div>
+
+
+
+
+    <section class="students-list-container-details">
+        <h5 class="students-list-title">Studenten</h5>
+        <form class="students-list-form" action="/details/{{ classInformation.id }}" method="get">
+            {% render 'partials/search-bar.liquid',
+                search-bar-id: "search-students",
+                search-bar-label-text: "Zoek studenten",
+                placeholder-text: "Zoek studenten",
+                hidden: "hidden",
+                search-bar-name: "searchStudents"
+            %}
+            {% endif %}
+            {% render 'partials/select-button.liquid',
                 select-button-id: "sorteren",
                 select-button-label-text: "Sorteren",
                 select-button-name: "sorteren",
                 button-value-1: "Sorteren op:",
-                button-value-2: "alfabet"
+                button-value-2: "a-z",
+                button-value-3: "z-a",
                 hidden: "hidden"
-                %}
+            %}
 
+            {% render 'partials/submit-button.liquid', button-text: "" %}
+        </form>
 
-          {% render 'partials/search-bar.liquid',
-            search-bar-id: "search-students",
-            search-bar-label-text: "Zoek studenten",
-            placeholder-text: "Zoek studenten"
-            hidden: "hidden"
-          %}
+        {% if search and search.size > 0 %}
+            <ul class="students-list">
+                {% for student in search %}
+                {% render 'partials/student-card.liquid', student-name: student %}
+                {% endfor %}
+            </ul>
+            {% elsif students and students.size > 0 %}
+                <ul class="students-list">
+                    {% for student in students %}
+                    {% render 'partials/student-card.liquid', student-name: student %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Geen studenten gevonden</p>
+        {% endif %}
 
-        {% render 'partials/student-card.liquid',
-        student-name: "Gareth Bale"
-         %}
-
-                {% render 'partials/big-statistics-button.liquid',
-                class-name: "klas-roze"
-                 %}
-
-        {% render 'partials/education-course-card.liquid',
-        education-course-name: "Maatschappelijke zorg",
-        education-course-subtitle: "maatschappelijke zorg - Ipse de Brugge"
-         %}
-
-
-        {% render 'partials/edit-button.liquid',
-        button-text: "Bewerken"
-         %}
-
-        
-
-        
+    </section>
 
 
 
+
+          
     </main>
+
+
+
+   <script>
+  const students = {{ students | json }};
+  console.log(students);
+
+const studentsList = document.querySelector('.students-list');
+const searchInput = document.getElementById('search-students');
+
+// students = names
+function createStudentsList(names) {
+  studentsList.innerHTML = '';  
+
+  names.forEach(name => {
+    const li = document.createElement('li');
+    li.classList.add('student-card'); 
+
+    const img = document.createElement('img');
+    img.src = '/img/student-placeholder.svg';
+    img.width = 30;
+    img.height = 30;
+    img.alt = '';
+
+    const h5 = document.createElement('h5');
+    h5.classList.add('student-name');
+    h5.textContent = name;
+
+    li.appendChild(img);
+    li.appendChild(h5);
+
+    studentsList.appendChild(li);
+  });
+}
+
+createStudentsList(students);
+
+searchInput.addEventListener('input', (event) => {
+  const value = event.target.value.toLowerCase();
+  console.log(value)
+
+  const filteredStudents = students.filter(name =>
+    name.toLowerCase().includes(value)
+  );
+
+  createStudentsList(filteredStudents);
+});
+
+
+
+</script>
+
 </body>
 
 

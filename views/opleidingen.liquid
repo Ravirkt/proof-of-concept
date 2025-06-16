@@ -1,0 +1,177 @@
+{% render 'partials/head.liquid' %}
+<script src="scripts/script.js" defer></script>
+<script src="scripts/progress.js" defer></script>
+<script src="/scripts/script.js" defer></script>
+<script src="/scripts/filter.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+
+{% comment %} de filter functie van van users maet sort() of filter() {% endcomment %}
+<main class="courses-container">
+
+    {% render 'partials/navbar.liquid' %}
+
+    <header class="header-container-courses">
+        {% render 'partials/back-button.liquid', href-text: "Pagina terug" %}
+    </header>
+
+    <div class="courses-column">
+        <section class="class-courses-container-courses">
+            <h5 class="class-course-title-details">Opleiding(en)</h5>
+
+            <article class="education-course-card-container">
+                {% for course in courses %}
+                {% assign course-subtitle = course | append: "- Ipse de Brugge" %}
+                {% render 'partials/education-course-card.liquid',
+                    education-course-name: course,
+                    education-course-subtitle: course-subtitle
+                %}
+                {% endfor %}
+            </article>
+        </section>
+    </div>
+
+    <section class="courses-list-container">
+        <h5 class="courses-list-title">Nieuwe Opleiding</h5>
+        <form class="courses-list-form" action="/opleidingen" method="post" data-enhanced="form">
+            {% render 'partials/search-bar.liquid',
+                search-bar-id: "add-course",
+                search-bar-label-text: "Opleiding",
+                placeholder-text: "Voeg opleiding toe",
+                hidden: "hidden",
+                search-bar-name: "opleiding",
+                is-required: "required"
+            %}
+            {% render 'partials/submit-button.liquid', button-text: "" %}
+        </form>
+    </section>      
+
+
+<p id="succes" class="h5">
+    <img class="succes-img" src="/img/hand.gif" height="50" width="50">
+    Opleiding aangemaakt!
+</p>
+
+  {% if success %}
+<p class="successtate h5">
+    <img class="succes-img" src="/img/hand.gif" height="50" width="50">
+    Opleiding aangemaakt!
+</p>  
+{% endif %}
+
+
+</main>
+
+
+
+<script type="module">
+    // We maken hieronder aannames over wat de browser ondersteunt
+    // Dus laten we deze eerst testen met Feature Detection
+    // https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection
+    if ('fetch' in window && 'DOMParser' in window) {
+    
+        // Als er ergens op de pagina een formulier wordt gesubmit..
+        // (We maken hier gebruik van Event Delegation)
+        document.addEventListener('submit', async function(event) {
+    
+        // Hou in een variabele bij welk formulier dat was
+        const form = event.target;
+    
+        // Als dit formulier geen data-enhanced attribuut heeft, doe dan niks
+        // Dit doen we, zodat we sommige formulieren op de pagina kunnen 'enhancen'
+        // Data attributen mag je zelf verzinnen; dit is dus niet iets speciaals
+        // https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Solve_HTML_problems/Use_data_attributes
+        if (!form.hasAttribute('data-enhanced')) {
+            return;
+        }
+    
+        // Voorkom de standaard submit van de browser
+        // Let op: hiermee overschrijven we de default Loading state van de browser...
+        event.preventDefault();
+
+        form.classList.add("submitting");
+    
+        
+    
+        // Doe een fetch naar de server, net als hoe de browser dit normaal zou doen
+        // Gebruik daarvoor het action en method attribuut van het originele formulier
+        // Inclusief alle formulierelementen
+        const response = await fetch(form.action, {
+            method: form.method,
+            body: new URLSearchParams(new FormData(form))
+        });
+    
+        // De server redirect op de normale manier, en geeft HTML terug
+        // (De server weet niet eens dat deze fetch via client-side JavaScript gebeurde)
+        const responseText = await response.text();
+    
+        // Normaal zou de browser die HTML parsen en weergeven, maar daar moeten we nu zelf iets mee
+        // Parse de nieuwe HTML en maak hiervan een nieuw Document Object Model in het geheugen
+        const parser = new DOMParser();
+        const responseDOM = parser.parseFromString(responseText, 'text/html');
+    
+        // Zoek in die nieuwe DOM onze nieuwe state op, die we via Liquid hebben klaargemaakt
+        // We gebruiken hiervoor het data-enhanced attribuut, zodat we weten waar we naar moeten zoeken
+        // (Hierdoor kunnen we ook meerdere formulieren op dezelfde pagina gebruiken)
+        const newState = responseDOM.querySelector('[data-enhanced="' + form.getAttribute('data-enhanced') + '"]');
+    
+        // Overschrijf ons formulier met de nieuwe HTML
+        // Hier wil je waarschijnlijk de Loading state vervangen door een Success state
+        form.outerHTML = newState.outerHTML;
+
+        const EducationCourseCard = (name, subtitle) => {
+        const card = document.createElement('div');
+        card.classList.add('education-course-card');
+
+        const contentContainer = document.createElement('div');
+        contentContainer.classList.add('education-course-card-content-container');
+
+        const title = document.createElement('h5');
+        title.classList.add('education-course-card-title'); 
+        title.textContent = name;
+
+        const subtitleElement = document.createElement('p'); 
+        subtitleElement.classList.add('education-course-card-subtitle');
+        subtitleElement.textContent = subtitle;
+
+        contentContainer.appendChild(title);
+        contentContainer.appendChild(subtitleElement);
+
+        card.appendChild(contentContainer);
+
+        const img = document.createElement('img');
+        img.src = '/img/education-icon.svg';
+        img.width = 50;
+        img.height = 50;
+        img.alt = '';
+        card.appendChild(img);
+
+        return card;
+        };
+
+        const courseName = form.querySelector('[name="opleiding"]').value;
+        const courseSubtitle = courseName + " - Ipse de Brugge";
+
+        const container = document.querySelector('.education-course-card-container');
+        if (container) {
+        const newCard = EducationCourseCard(courseName, courseSubtitle);
+        container.insertBefore(newCard, container.firstChild);
+        }
+
+        // voor succes message post
+        const successMessage = document.getElementById('succes');
+        if (successMessage) {
+            successMessage.style.display = 'flex';
+
+            setTimeout(() => {
+            successMessage.style.display = 'none';
+            }, 3000);
+        }
+        });
+    }
+</script>
+
+
+</body>
+
+
+

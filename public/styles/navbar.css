@@ -36,7 +36,14 @@
     user-select: none;
     transition: transform 0.3s ease;
     font-family: var(--general-font);
+
+    &:hover {
+        background-color: blue;
+    }
 }
+
+
+
 
 @media (min-width:1100px) {
     .navbar-button {

@@ -4,7 +4,8 @@
     gap: 1rem;
     align-items: center;
     border: var(--border);
-    width: fit-content;
+    width: 100%;
+    max-width: 20rem;
     padding: 1.5rem;
     border-radius: 0.4rem;
     background-color: var(--achtergrond);

@@ -14,87 +14,79 @@ body {
   --color-black: #09090B;
   --shadow: 0 0 1px #71717a;
 
-
   --padding-top: 2rem;
-
-  /* fonts */
-  @font-face {
-    font-family: "headers-primary";
-    src: url(../font/Rubik-VariableFont_wght/woff2);
-  }
-
-  @font-face {
-    font-family: "general";
-    src: url(../font/Figtree-VariableFont_wght/woff2);
-  }
-
   --header-primary-font: "headers-primary", sans-serif;
   --general-font: "general", sans-serif;
   --border: 0.7px solid var(--color-muted)
-
 }
 
-.h1, h1 {
+@font-face {
+  font-family: "general";
+  src: url(../font/Figtree-VariableFont_wght/woff2);
+}
+
+/* fonts */
+@font-face {
+  font-family: "headers-primary";
+  src: url(../font/Rubik-VariableFont_wght/woff2);
+}
+
+.h1,
+h1 {
   font-family: var(--header-primary-font);
   color: var(--font-headers-primary);
-  font-size: clamp(1.5rem, 5vw, 2rem); 
+  font-size: clamp(1.5rem, 5vw, 2rem);
 }
 
-.h2, h2 {
+.h2,
+h2 {
   font-family: var(--header-primary-font);
   color: var(--font-headers-primary);
-  font-size: clamp(1.375rem, 4vw, 1.75rem); 
+  font-size: clamp(1.375rem, 4vw, 1.75rem);
 }
 
-.h3, h3 {
+.h3,
+h3 {
   font-family: var(--header-primary-font);
   color: var(--font-headers-primary);
-  font-size: clamp(1.25rem, 3.5vw, 1.5rem); 
+  font-size: clamp(1.25rem, 3.5vw, 1.5rem);
 }
 
-.h4, h4 {
+.h4,
+h4 {
   font-family: var(--header-primary-font);
   color: var(--font-headers-primary);
-  font-size: clamp(1.125rem, 3vw, 1.25rem); 
+  font-size: clamp(1.125rem, 3vw, 1.25rem);
 }
 
-.h5, h5 {
+.h5,
+h5 {
   font-family: var(--header-primary-font);
   color: var(--font-headers-primary);
-  font-size: clamp(1rem, 2.5vw, 1.125rem); 
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
 }
 
-.h6, h6 {
+.h6,
+h6 {
   font-family: var(--header-primary-font);
   color: var(--font-headers-primary);
-  font-size: clamp(0.875rem, 2vw, 1rem); 
+  font-size: clamp(0.875rem, 2vw, 1rem);
 }
-
-
-
 
 .paragraph {
   font-family: var(--general-font);
   color: var(--font-secundair-color);
-  font-size: clamp(0.775rem, 2vw, 0.8rem); 
+  font-size: clamp(0.775rem, 2vw, 0.8rem);
 }
 
 p {
   font-family: var(--general-font);
   color: var(--font-secundair-color);
-  font-size: clamp(0.875rem, 2vw, 0.8rem); 
+  font-size: clamp(0.875rem, 2vw, 0.8rem);
 
 }
 
 .label {
   font-family: var(--general-font);
-  font-size: clamp(0.700rem, 2vw, 1rem); 
+  font-size: clamp(0.700rem, 2vw, 1rem);
 }
-
-
-
-
-
-
-
-

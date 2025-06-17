@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Datum</th>
+      <th>Actieve gebruikers</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in data %}
+      <tr>
+        <td>{{ row.datum }}</td>
+        <td>{{ row.gebruikers }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

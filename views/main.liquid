@@ -28,6 +28,10 @@
             <div class="chart-container">
                 <canvas class="chart" id="line-chart" height="100"></canvas>
             </div>
+
+            <div class="table-container">
+              {% render 'partials/table-chart.liquid', data: chartData %}
+            </div>
         </div>
 
         <section class="card-parent-container">

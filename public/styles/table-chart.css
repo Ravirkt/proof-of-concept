@@ -1,0 +1,44 @@
+.table-container {
+    display: block;
+    width: 100%;
+    box-shadow: var(--shadow);
+    border-radius: 0.4rem;
+    border: var(--border);
+}
+
+.table {
+    font-family: var(--general-font);
+    width: 100%;
+}
+
+.table thead {
+    background-color: var(--color-disabled);
+    color: var(--black);
+}
+
+.table th,
+.table td {
+    padding: 0.7rem;
+    text-align: left;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: var(--color-disabled);
+}
+
+.table tbody tr:hover {
+    background-color: #2A9D90;
+}
+
+/* voor als js er niet is komt de table tevoorschijn anders wel chart en geen table */
+.chart-container {
+    display: none;
+}
+
+.javascript .chart-container {
+    display: block;
+}
+
+.javascript .table-container {
+    display: none;
+}

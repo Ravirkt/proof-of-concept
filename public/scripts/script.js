@@ -2,7 +2,7 @@ fetch('/chartdata')
   .then(res => res.json())
   .then(data => {
     const { activeUsers, date } = data; 
-// een table met alle data erin als fallback
+// een table met alle data erin als fallback feedback Krijn
     console.log(activeUsers);    
     console.log(date);  
 
@@ -82,10 +82,9 @@ const lineChart = document.getElementById("line-chart");
     })
   })
 
-
-
-
-
+//   voor tablet en chart aan en uit zetten
+  document.documentElement.classList.remove("no-javascript");
+  document.documentElement.classList.add("javascript");
 
 
 

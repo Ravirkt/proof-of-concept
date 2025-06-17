@@ -28,14 +28,25 @@ app.get('/', async function (request, response) {
     const apiResponseCardInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
     const cardInfoDataJSON = await apiResponseCardInfo.json()
 
-    console.log(classDataJSON)
+    // console.log(classDataJSON)
+    // voor ophalen chart data serverside
+    const apiResponseChartInfo = await fetch('https://api.frd-delta.nl/statistieken.json');
+    const chartInfoDataJSON = await apiResponseChartInfo.json()
 
-    response.render('main.liquid', { classes: classDataJSON, statistics: cardInfoDataJSON, });
+    // const dates = chartInfoDataJSON.actieveGebruikers.map(dbDate => dbDate.datum);
+    // console.log(dates)
+
+    // const activeUsers = chartInfoDataJSON.actieveGebruikers.map(dbUsers => dbUsers.gebruikers);
+    console.log(chartInfoDataJSON.actieveGebruikers)
+
+
+    response.render('main.liquid', { classes: classDataJSON, statistics: cardInfoDataJSON, chartData: chartInfoDataJSON.actieveGebruikers });
 
   } catch {
     console.error("Het gaat niet goed")
   }
 })
+
 
 app.get('/chartdata', async function (request, response) {
   try {
@@ -44,10 +55,10 @@ app.get('/chartdata', async function (request, response) {
     const cardInfoDataJSON = await apiResponseCardInfo.json()
 
     const date = cardInfoDataJSON.actieveGebruikers.map(dbDate => dbDate.datum);
-    console.log(date)
+    // console.log(date)
 
     const activeUsers = cardInfoDataJSON.actieveGebruikers.map(dbUsers => dbUsers.gebruikers);
-    console.log(activeUsers)
+    // console.log(activeUsers)
 
     response.json({ date, activeUsers });
 
@@ -56,12 +67,13 @@ app.get('/chartdata', async function (request, response) {
   }
 })
 
+
 app.get('/progressdata', async function (request, response) {
   try {
     // voor ophalen percentage data van de klassen
     const apiResponseprogressData = await fetch('https://api.frd-delta.nl/klassen.json');
     const progressDataJSON = await apiResponseprogressData.json()
-    console.log(progressDataJSON);
+    // console.log(progressDataJSON);
 
     const progressPink = progressDataJSON[0].voortgang
     const progressPurple = progressDataJSON[1].voortgang
@@ -98,7 +110,7 @@ app.get('/details/:id', async function (request, response) {
       student.toLowerCase().includes(searchStudents)
     );
 
-    console.log(filteredStudents)
+    // console.log(filteredStudents)
 
     response.render('details.liquid', { classInformation: classDataJSON, students: classDataJSON.studenten, search: filteredStudents });
 
@@ -123,7 +135,7 @@ app.post('/opleidingen', async function (request, response) {
     })
   });
 
-  console.log(apiResponse)
+  // console.log(apiResponse)
 
   response.redirect(303, '/opleidingen' + '?success=true');
 });

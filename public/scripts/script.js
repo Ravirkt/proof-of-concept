@@ -83,7 +83,7 @@ const lineChart = document.getElementById("line-chart");
   })
 
 //   voor tablet en chart aan en uit zetten
-  document.documentElement.classList.remove("no-javascript");
+//   document.documentElement.classList.remove("no-javascript");
   document.documentElement.classList.add("javascript");
 
 

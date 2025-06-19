@@ -33,6 +33,8 @@ De pagina is deel van een dynamische en interactieve systeem waarmee de gebruike
 ## Mobile first
 Bij de ontwikkeling van de pagina is gewerkt volgens het mobile first-principe. Hierbij is ook rekening gehouden met de responsiveness van de typografie voor grotere schermen. Dit is gedaan door middel van CSS clamp(). Deze aanpak is verwerkt in de styleguide van de basic-styling.
 
+De minimale responsive grootte was voor de opdrachtgever tablet formaat.
+
 ## Functionaliteiten per pagina in het kort
 
 ### Main pagina

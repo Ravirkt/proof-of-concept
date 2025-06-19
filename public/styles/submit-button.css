@@ -7,6 +7,7 @@
     box-shadow: var(--shadow);
     border-radius: 0.4rem;
     cursor: pointer;
+    width: fit-content;
 
     &:hover {
         border-color: var(--primair);

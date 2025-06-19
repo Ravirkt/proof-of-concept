@@ -23,7 +23,8 @@
                 {% assign course-subtitle = course | append: "- Ipse de Brugge" %}
                 {% render 'partials/education-course-card.liquid',
                     education-course-name: course,
-                    education-course-subtitle: course-subtitle
+                    education-course-subtitle: course-subtitle,
+                    education-course-card-courses-page: "width-card-courses-page"
                 %}
                 {% endfor %}
             </article>

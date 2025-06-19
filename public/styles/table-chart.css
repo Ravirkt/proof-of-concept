@@ -11,11 +11,15 @@
     width: 100%;
 }
 
+.table caption {
+    visibility: hidden;
+}
+
 .table thead {
     background-color: var(--color-disabled);
     color: var(--black);
 }
-
+        
 .table th,
 .table td {
     padding: 0.7rem;
@@ -41,4 +45,37 @@
 
 .javascript .table-container {
     display: none;
+}
+
+
+
+/* voor chart en table switchen */
+
+
+
+.button-chart-table {
+    border: 1px solid black;
+}
+
+.checkbox-label::before {
+    content: "Chart";
+
+}
+
+#chart-button:checked +label.checkbox-label::after {
+    content: "Tabel";
+}
+
+#chart-button {
+    display: none;
+}
+
+#chart-button:checked+label.checkbox-label {
+    background-color: #2A9D90;
+}
+
+.checkbox-label {
+    background-color: green;
+    border: 2px solid black;
+    padding: 0.3rem;
 }

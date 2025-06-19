@@ -5,7 +5,7 @@
     align-items: center;
     border: var(--border);
     width: 100%;
-    max-width: 20rem;
+    max-width: fit-content;
     padding: 1.5rem;
     border-radius: 0.4rem;
     background-color: var(--achtergrond);
@@ -19,13 +19,13 @@
             font-family: var(--general-font);
             font-weight: 550;
             color: var(--color-black);
-            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-size: clamp(1rem, 2vw, 1.1rem);
         }
 
         .education-course-card-subtitle {
             font-family: var(--general-font);
             font-weight: lighter;
-            font-size: clamp(0.650rem, 2vw, 1rem);
+            font-size: clamp(0.650rem, 2vw, 0.75rem);
         }
     }
 
@@ -33,4 +33,9 @@
         margin-left: auto;
         padding-left: 1.5rem;
     }
+}
+
+.education-course-card.width-card-courses-page {
+  width: 15rem;
+  max-width: unset; 
 }

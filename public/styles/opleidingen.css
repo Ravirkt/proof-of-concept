@@ -7,7 +7,7 @@ body {
     background-color: var(--achtergrond);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 600px) {
     .courses-container {
         display: grid;
         grid-template-columns: 1fr 1fr;

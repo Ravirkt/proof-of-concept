@@ -8,7 +8,12 @@
 }
 
 .buttons-container input[type="radio"] {
-  display: none;
+  position: absolute;
+  left: -9999em;
+}
+
+.buttons-container input[type="radio"]:focus + label.button {
+  outline: solid 0.7px var(--primair);
 }
 
 .buttons-container label.button {
@@ -23,7 +28,7 @@
   justify-content: center;
 }
 
-.buttons-container input[type="radio"]:checked + label.button {
+.buttons-container input[type="radio"]:checked+label.button {
   background-color: white;
   color: var(--color-black);
 }

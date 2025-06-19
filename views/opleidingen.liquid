@@ -16,7 +16,7 @@
 
     <div class="courses-column">
         <section class="class-courses-container-courses">
-            <h5 class="class-course-title-details">Opleiding(en)</h5>
+            <h3 class="class-course-title-details h5">Opleiding(en)</h3>
 
             <article class="education-course-card-container">
                 {% for course in courses %}
@@ -31,13 +31,13 @@
     </div>
 
     <section class="courses-list-container">
-        <h5 class="courses-list-title">Nieuwe Opleiding</h5>
+        <h3 class="courses-list-title h5">Nieuwe Opleiding</h3>
         <form class="courses-list-form" action="/opleidingen" method="post" data-enhanced="form">
             {% render 'partials/search-bar.liquid',
                 search-bar-id: "add-course",
                 search-bar-label-text: "Opleiding",
                 placeholder-text: "Voeg opleiding toe",
-                hidden: "hidden",
+                hide-label-searchbar: "hide-bar",
                 search-bar-name: "opleiding",
                 is-required: "required"
             %}
@@ -47,13 +47,13 @@
 
 
 <p id="succes" class="h5">
-    <img class="succes-img" src="/img/hand.gif" height="50" width="50">
+    <img class="succes-img" src="/img/hand.gif" height="50" width="50" alt="">
     Opleiding aangemaakt!
 </p>
 
   {% if success %}
 <p class="successtate h5">
-    <img class="succes-img" src="/img/hand.gif" height="50" width="50">
+    <img class="succes-img" src="/img/hand.gif" height="50" width="50" alt="">
     Opleiding aangemaakt!
 </p>  
 {% endif %}

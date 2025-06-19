@@ -120,6 +120,17 @@ body {
     width: fit-content; */
 }
 
+#hide-label-select,
+#search-bar-hide {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
 /* students list with form elements */
 .students-list-container-details {
     padding: 0rem 1rem 2rem 1rem;

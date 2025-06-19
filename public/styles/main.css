@@ -62,14 +62,11 @@ body {
     gap: 1.5rem;
 
     @media (min-width:768px) {
-        
+
         padding-left: 6rem;
         padding-right: 6rem;
     }
 }
-
-
-
 
 /* chart ✅ */
 .chart-main-container {
@@ -82,9 +79,6 @@ body {
         padding-right: 6rem;
     }
 }
-
-
-
 
 .chart-container {
     /* padding: 2rem 1rem 2rem 1rem; */
@@ -103,13 +97,6 @@ body {
 
     padding: 1rem;
 }
-
-
-
-
-
-
-
 
 /*  drie cards */
 .card-parent-container {
@@ -138,7 +125,7 @@ body {
     }
 
     @media (min-width: 1500px) {
-        justify-content:space-between;
+        justify-content: space-between;
     }
 }
 
@@ -157,8 +144,6 @@ body {
         flex-direction: row;
     }
 }
-
-
 
 /* .switch-buttons-container-2 {
     display: grid;
@@ -190,10 +175,6 @@ body {
     }
 }
 
-
-
-
-
 .cards-parent-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -210,9 +191,6 @@ body {
         padding-right: 6rem;
     }
 }
-
-
-
 
 .progress-chart {
     height: 2rem;

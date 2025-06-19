@@ -21,8 +21,12 @@
             label-text-2: "Course data",
             label-name: "switch-buttons-1"
             %}
-        </header>
 
+            {% comment %} <div class="button-chart-table">
+                <input type="checkbox" id="chart-button"></input>
+                <label for="chart-button" class="checkbox-label"></label>
+            </div> {% endcomment %}
+        </header>
 
         <div class="chart-main-container">
             <div class="chart-container">
@@ -33,6 +37,7 @@
               {% render 'partials/table-chart.liquid', data: chartData %}
             </div>
         </div>
+
 
         <section class="card-parent-container">
             <h2 hidden>Statistieken</h2>
@@ -70,13 +75,16 @@
                 select-button-label-text: "Leerjaar",
                 select-button-name: "leerjaar",
                 button-value-1: "Schooljaar",
-                button-value-2: "Jaar 1"
+                button-value-2: "Jaar 1",
+                button-value-3: "Jaar 2"
+
                 %}
 
                 {% render 'partials/search-bar.liquid',
                 search-bar-id: "search-classes",
                 search-bar-label-text: "Zoek klassen",
                 placeholder-text: "Zoek Klassen"
+                search-bar-name: "searchbar-classes"
                 %}
             </form>
 

@@ -46,7 +46,7 @@
         </section>
 
         <section class="class-courses-container-details">
-            <h5 class="class-course-title-details">Opleiding(en)</h5>
+            <h3 class="class-course-title-details h5">Opleiding(en)</h3>
 
 
             <article class="education-course-card-container">
@@ -63,14 +63,15 @@
 
 
     <section class="students-list-container-details">
-        <h5 class="students-list-title">Studenten</h5>
+        <h3 class="students-list-title h5">Studenten</h3>
         <form class="students-list-form" action="/details/{{ classInformation.id }}" method="get">
             {% render 'partials/search-bar.liquid',
                 search-bar-id: "search-students",
                 search-bar-label-text: "Zoek studenten",
                 placeholder-text: "Zoek studenten",
-                hidden: "hidden",
                 search-bar-name: "searchStudents"
+                hide-label-searchbar: "search-bar-hide"
+
             %}
             {% endif %}
             {% render 'partials/select-button.liquid',
@@ -80,7 +81,7 @@
                 button-value-1: "Sorteren op:",
                 button-value-2: "a-z",
                 button-value-3: "z-a",
-                hidden: "hidden"
+                hide-label: "hide-label-select"
             %}
 
             {% render 'partials/submit-button.liquid', button-text: "" %}
@@ -133,12 +134,12 @@ function createStudentsList(names) {
     img.height = 30;
     img.alt = '';
 
-    const h5 = document.createElement('h5');
-    h5.classList.add('student-name');
-    h5.textContent = name;
+    const h4 = document.createElement('h4');
+    h4.classList.add('student-name');
+    h4.textContent = name;
 
     li.appendChild(img);
-    li.appendChild(h5);
+    li.appendChild(h4);
 
     studentsList.appendChild(li);
   });

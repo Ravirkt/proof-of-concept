@@ -56,13 +56,13 @@ Op deze pagina kan de gebruiker een nieuwe opleiding aanmaken. Dit kan de gebrui
 
 De POST werkt client side zodat de page niet refreshed en de functie is ook gewoon te gebruiken als Javascript uit staat in de browser.
 
-| Main                                             | Details                                             |
+| Main                                             | Details-tablet                                             |
 | -------------------------------------------------------- | -------------------------------------------------- |
-| <img src="/img/main.gif" width="300"> | <img src="/img/details-tablet.gif" width="200"> |
+| <img src="./public/img/main.gif" width="300"> | <img src="./public/img/details-tablet.gif" width="200"> |
 
-| Footer                                             | detailspagina                                         |
+| Details-mobile                                             | Navbar                                         |
 | -------------------------------------------------- | ----------------------------------------------------- |
-| <img src="/img/details-phone.gif" width="200"> | <img src="./public/assets/addedcomp.gif" width="200"> |
+| <img src="./public/img/details-phone.gif" width="200"> | <img src="./public/img/navbar.gif" width="200"> |
 
 
 ## Performance enhancement

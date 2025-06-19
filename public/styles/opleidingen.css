@@ -43,7 +43,6 @@ body {
             grid-column: 3;
         }
     }
-
 }
 
 #hide-bar {
@@ -55,7 +54,6 @@ body {
     white-space: nowrap;
     width: 1px;
 }
-
 
 .header-container-courses {
     display: flex;

@@ -21,23 +21,20 @@
             label-text-2: "Course data",
             label-name: "switch-buttons-1"
             %}
-
-            {% comment %} <div class="button-chart-table">
-                <input type="checkbox" id="chart-button"></input>
-                <label for="chart-button" class="checkbox-label"></label>
-            </div> {% endcomment %}
         </header>
 
-        <div class="chart-main-container">
+       <div class="chart-main-container">
+            <input type="checkbox" id="chart-button" class="chart-toggle-checkbox" hidden>
+            <label for="chart-button" class="checkbox-label button label">Chart / Tabel</label>
+
             <div class="chart-container">
                 <canvas class="chart" id="line-chart" height="100"></canvas>
             </div>
 
             <div class="table-container">
-              {% render 'partials/table-chart.liquid', data: chartData %}
+                {% render 'partials/table-chart.liquid', data: chartData %}
             </div>
         </div>
-
 
         <section class="card-parent-container">
             <h2 hidden>Statistieken</h2>
@@ -64,8 +61,6 @@
                 %}
             {% endif %}
         </section>
-
-
 
         <section class="main-form-parent-container">
             <h4 hidden>filters</h4>

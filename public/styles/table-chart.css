@@ -12,17 +12,22 @@
 }
 
 .table caption {
-    visibility: hidden;
+    caption-side: top;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    color: var(--color-black);
+    font-family: var(--general-font);
 }
 
 .table thead {
     background-color: var(--color-disabled);
-    color: var(--black);
+    color: var(--color-black);
 }
-        
+
 .table th,
 .table td {
-    padding: 0.7rem;
+    padding: 0.45rem;
     text-align: left;
 }
 
@@ -47,35 +52,47 @@
     display: none;
 }
 
-
-
-/* voor chart en table switchen */
-
-
-
-.button-chart-table {
-    border: 1px solid black;
+/* voor chart en table switchen met checkbox butootn */
+.chart-container {
+    display: block;
 }
 
-.checkbox-label::before {
-    content: "Chart";
-
-}
-
-#chart-button:checked +label.checkbox-label::after {
-    content: "Tabel";
-}
-
-#chart-button {
+.table-container {
     display: none;
 }
 
-#chart-button:checked+label.checkbox-label {
-    background-color: #2A9D90;
+.chart-toggle-checkbox:checked~.chart-container {
+    position: absolute;
+    left: -9999em;
+}
+
+.chart-toggle-checkbox:checked~.table-container {
+    display: block;
+}
+
+/* de toggle button voor switchen naar chart / table werkt nog niet met toetsenbord */
+.chart-toggle-checkbox:focus + label.checkbox-label {
+    outline: solid 0.7px var(--primair);
 }
 
 .checkbox-label {
-    background-color: green;
-    border: 2px solid black;
-    padding: 0.3rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    color: var(--color-black);
+    border-radius: 0.4rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    width: fit-content;
+    background-color: var(--color-disabled);
+    font-size: smaller;
+
+    &:hover {
+        box-shadow: var(--shadow);
+    }
 }
+
+.chart-toggle-checkbox:checked+label.checkbox-label {
+    background-color: var(--color-muted);
+    color: white;
+}
+

@@ -46,20 +46,17 @@
         </form>
     </section>      
 
+    <p id="succes" class="h5">
+        <img class="succes-img" src="/img/hand.gif" height="50" width="50" alt="">
+        Opleiding aangemaakt!
+    </p>
 
-<p id="succes" class="h5">
-    <img class="succes-img" src="/img/hand.gif" height="50" width="50" alt="">
-    Opleiding aangemaakt!
-</p>
-
-  {% if success %}
-<p class="successtate h5">
-    <img class="succes-img" src="/img/hand.gif" height="50" width="50" alt="">
-    Opleiding aangemaakt!
-</p>  
-{% endif %}
-
-
+    {% if success %}
+        <p class="successtate h5">
+            <img class="succes-img" src="/img/hand.gif" height="50" width="50" alt="">
+            Opleiding aangemaakt!
+        </p>  
+    {% endif %}
 </main>
 
 
@@ -90,9 +87,7 @@
         event.preventDefault();
 
         form.classList.add("submitting");
-    
-        
-    
+
         // Doe een fetch naar de server, net als hoe de browser dit normaal zou doen
         // Gebruik daarvoor het action en method attribuut van het originele formulier
         // Inclusief alle formulierelementen

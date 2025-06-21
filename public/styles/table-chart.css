@@ -40,34 +40,33 @@
 }
 
 /* voor als js er niet is komt de table tevoorschijn anders wel chart en geen table */
-.chart-container {
-    display: none;
-}
-
-.javascript .chart-container {
-    display: block;
-}
-
-.javascript .table-container {
-    display: none;
-}
-
-/* voor chart en table switchen met checkbox butootn */
-.chart-container {
-    display: block;
+.chart-container,
+.checkbox-label {
+  display: none;
 }
 
 .table-container {
-    display: none;
+  display: block;
 }
 
-.chart-toggle-checkbox:checked~.chart-container {
-    position: absolute;
-    left: -9999em;
+.javascript .checkbox-label {
+  display: inline-block;
 }
 
-.chart-toggle-checkbox:checked~.table-container {
-    display: block;
+.javascript .chart-container {
+  display: block;
+}
+
+.javascript .table-container {
+  display: none;
+}
+
+.javascript .chart-toggle-checkbox:checked ~ .chart-container {
+  display: none;
+}
+
+.javascript .chart-toggle-checkbox:checked ~ .table-container {
+  display: block;
 }
 
 /* de toggle button voor switchen naar chart / table werkt nog niet met toetsenbord */

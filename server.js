@@ -122,22 +122,24 @@ app.get('/details/:id', async function (request, response) {
 // post
 app.post('/opleidingen', async function (request, response) {
 
-  const { opleiding } = request.body;
-  console.log(request.body)
+  try {
+    const { opleiding } = request.body;
+    console.log(request.body);
 
-  const apiResponse = await fetch('https://684f1804f0c9c9848d2a1123.mockapi.io/api/klassen/opleiding', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    const apiResponse = await fetch('https://684f1804f0c9c9848d2a1123.mockapi.io/api/klassen/opleiding', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     body: JSON.stringify({
       opleiding: opleiding,
     })
   });
 
-  // console.log(apiResponse)
-
-  response.redirect(303, '/opleidingen' + '?success=true');
+   response.redirect(303, '/opleidingen?success=true');
+  } catch (error) {
+    console.error("Het gaat niet goed");
+  }
 });
 
 app.get('/opleidingen', async function (request, response) {

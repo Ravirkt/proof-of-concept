@@ -9,7 +9,7 @@
     z-index: 9999;
     color: var(--black);
     font-family: var(--general-font);
-    border: var(--border);
+    /* border: var(--border); */
     animation: successtate 5s linear forwards;
     box-shadow: var(--shadow);
 

@@ -3,7 +3,7 @@
     width: 100%;
     box-shadow: var(--shadow);
     border-radius: 0.4rem;
-    border: var(--border);
+    /* border: var(--border); */
 }
 
 .table {

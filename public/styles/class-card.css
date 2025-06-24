@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     gap: 0.7rem;
-    border: var(--border);
+    /* border: var(--border); */
     padding: 1rem;
     border-radius: 0.4rem;
     box-shadow: var(--shadow);

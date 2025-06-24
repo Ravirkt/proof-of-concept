@@ -87,7 +87,7 @@ body {
 }
 
 .chart-container {
-    border: var(--border);
+    /* border: var(--border); */
     border-radius: 0.4rem;
     box-shadow: var(--shadow);
     padding: 1rem;

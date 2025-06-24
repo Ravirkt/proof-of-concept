@@ -9,6 +9,9 @@
     padding: 1.5rem;
     border-radius: 0.4rem;
     background-color: var(--achtergrond);
+    /* box-shadow: var(--shadow); */
+
+
 
     .education-course-card-content-container {
         display: flex;
